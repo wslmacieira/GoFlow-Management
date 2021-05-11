@@ -1,0 +1,338 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Gestão Goflux Documentation",
+    "description": "This is an API Management",
+    "version": "1.0.0",
+    "contact": {
+      "email": "wslmacieira@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Embarcador",
+      "description": "Recurso para Embarcadores"
+    },
+    {
+      "name": "Transportador",
+      "description": "Recurso para Transportador"
+    },
+    {
+      "name": "Oferta",
+      "description": "Recurso para Oferta"
+    },
+    {
+      "name": "Lance",
+      "description": "Recurso para Lance"
+    }
+  ],
+  "paths": {
+    "/embarcadores": {
+      "get": {
+        "tags":["Embarcador"],
+        "summary": "Lista todos embarcadores",
+        "description": "Lista todos embarcadores",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "$ref": "#/definitions/Embarcador"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Embarcador"],
+        "summary": "cadastra um novo embarcador",
+        "requestBody": {
+          "description": "Cadastra um novo embarcador",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Embarcador"
+              }
+            }
+          },
+          "required":true
+        },
+        "responses": {
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    },
+    "/embarcadores/import": {
+      "post": {
+        "tags": ["Embarcador"],
+        "summary": "Cadastra embarcadores através de upload .csv",
+        "description": "Cadastra embarcadores através de upload .csv",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type":"object",
+                "properties": {
+                  "file": {
+                    "type":"string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    },
+    "/transportadoras": {
+      "get": {
+        "tags":["Transportador"],
+        "summary": "Lista todas transportadoras",
+        "description": "Lista todas transportadoras",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "$ref": "#/definitions/Transportador"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Transportador"],
+        "summary": "cadastra uma nova transportadora",
+        "description": "Cadastra uma nova transportadora",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Transportador"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    },
+    "/ofertas": {
+      "get": {
+        "tags":["Oferta"],
+        "summary": "Lista todas ofertas",
+        "description": "Lista todas ofertas",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "$ref": "#/definitions/Oferta"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Oferta"],
+        "summary": "cadastra uma nova oferta",
+        "description": "Cadastra uma nova oferta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Oferta"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    },
+    "/lances": {
+      "get": {
+        "tags":["Lance"],
+        "summary": "Lista todos lances",
+        "description": "Lista todos lances",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "$ref": "#/definitions/Lance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Lance"],
+        "summary": "cadastra um novo lance",
+        "description": "Cadastra um novo lance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Lance"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Requisição inválida (erro do cliente)"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Embarcador": {
+      "type": "object",
+      "properties" : {
+        "name": {
+          "type": "string"
+        },
+        "doc": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "site": {
+          "type": "string"
+        }
+      }
+    },
+    "Transportador": {
+      "type": "object",
+      "properties" : {
+        "name": {
+          "type": "string"
+        },
+        "doc": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "site": {
+          "type": "string"
+        }
+      }
+    },
+    "Oferta": {
+      "type": "object",
+      "properties" : {
+        "id_customer": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "initial_value": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "amount_type": {
+          "type": "string"
+        }
+      }
+    },
+    "Lance": {
+      "type": "object",
+      "properties" : {
+        "id_provider": {
+          "type": "string"
+        },
+        "id_offer": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}
